@@ -9,11 +9,17 @@ import InputComponent from '../InputComponent';
 
 import Styles from './Dropdown.component.styles';
 
-import type { DropdownProps, OnSelect } from './Dropdown.component.types';
+import type { DropdownProps, OnSelect, UseDropdownReturn } from './Dropdown.component.types';
 
+/**
+ * Render List options
+ * @param {DropdownProps['options']} list - List options
+ * @param {OnSelect} onSelect - OnSelect method
+ * @returns {React.ReactNode} - Render List options
+ */
 const _renderList = (list: DropdownProps['options'], onSelect: OnSelect): React.ReactNode => (
   <ul>
-    {list.map((o, index) => (
+    {list?.map((o, index) => (
       <li
         key={o.value || index}
         className={Styles.listOptionItems()}
@@ -25,16 +31,22 @@ const _renderList = (list: DropdownProps['options'], onSelect: OnSelect): React.
   </ul>
 );
 
-const _renderSelectedValue = (values: string[], onClick: OnSelect): React.ReactNode =>
-  values && (
+/**
+ * Render Selected value
+ * @param {String[]} values - Selected value
+ * @param {OnSelect} onClick - OnSelect method
+ * @returns {React.ReactNode} - Render Selected value
+ */
+const _renderSelectedValue = (hooks: UseDropdownReturn): React.ReactNode =>
+  hooks.selected && (
     <div className={Styles.wrapperSelectedValue()}>
-      {values.map((value) => (
-        <div className={Styles.itemSelectedValue()}>
+      {hooks.selected.map((value, index) => (
+        <div key={value || index} className={Styles.itemSelectedValue()}>
           <h3>{value}</h3>
           {
             <IoIosCloseCircle
               className={Styles.closeCircleButton()}
-              onClick={() => onClick(value)}
+              onClick={() => hooks.handleSelect(value)}
               color="gray"
               size={20}
             />
@@ -44,15 +56,70 @@ const _renderSelectedValue = (values: string[], onClick: OnSelect): React.ReactN
     </div>
   );
 
-const DropdownComponent = ({
-  options,
-  searchable = true,
-  multiple = true,
-  portal = false,
-}: DropdownProps): React.ReactNode => {
+/**
+ * Render content open
+ * @param {UseDropdownReturn} hooks - Hooks dropdown
+ * @param {DropdownProps} props - Props
+ * @returns {React.ReactNode} - Render content open
+ */
+const _renderContentOpen = (hooks: UseDropdownReturn, props: DropdownProps): React.ReactNode => (
+  <div className={Styles.wrapperContent(props)}>
+    {props.searchable && (
+      <InputComponent
+        value={hooks.search}
+        onChange={hooks.setSearch}
+        onReset={() => hooks.setSearch('')}
+        size="full"
+      />
+    )}
+    {_renderList(hooks.filtered, hooks.handleSelect)}
+  </div>
+);
+
+const _renderContentOpenWrapper = (
+  hooks: UseDropdownReturn,
+  props: DropdownProps,
+): React.ReactNode => {
+  if (!hooks.open) {
+    return null;
+  }
+
+  return props.portal
+    ? createPortal(_renderContentOpen(hooks, props), document.body)
+    : _renderContentOpen(hooks, props);
+};
+
+/**
+ * useDropdown
+ * custom hooks dropdown help to clean and readable
+ * @param {DropdownProps} props - Props
+ * @returns {UseDropdownReturn} - custom hooks dropdown help to clean and readable
+ */
+const useDropdown = (props: DropdownProps): UseDropdownReturn => {
+  const { options, multiple, value, onChange } = props;
+
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const [selected, setSelected] = useState<string[]>([]);
+  const [internalSelected, setInternalSelected] = useState<string[]>([]);
+
+  const selected = value ?? internalSelected;
+
+  const handleSelect = (v: string): void => {
+    let next: string[];
+
+    if (!multiple) {
+      next = [v];
+      setOpen(false);
+    } else {
+      next = selected.includes(v) ? selected.filter((s) => s !== v) : [...selected, v];
+    }
+
+    if (onChange) {
+      onChange(next);
+    } else {
+      setInternalSelected(next);
+    }
+  };
 
   const filtered = useMemo(() => {
     if (!search) {
@@ -62,42 +129,32 @@ const DropdownComponent = ({
     return options.filter((o) => o.label.toLowerCase().includes(search.toLowerCase()));
   }, [options, search]);
 
-  const toggle = (value: string): void => {
-    if (!multiple) {
-      setSelected([value]);
-      setOpen(false);
+  return { open, setSearch, filtered, handleSelect, search, setOpen, selected };
+};
 
-      return;
-    }
+const _renderIconChevron = (hooks: UseDropdownReturn): React.ReactNode => (
+  <button className=" w-10">
+    <FaChevronDown onClick={() => hooks.setOpen((v) => !v)} className={Styles.chevronIcon()} />
+  </button>
+);
 
-    setSelected((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
-    );
-  };
-
-  const content = (
-    <div className={Styles.wrapperContent()}>
-      {searchable && (
-        <InputComponent
-          onReset={() => setSearch('')}
-          size={'full'}
-          value={search}
-          onChange={setSearch}
-        />
-      )}
-      {_renderList(filtered, toggle)}
-    </div>
-  );
+/**
+ * Dropdown Component Primitive
+ * @param {DropdownProps} props - Props
+ * @returns {React.ReactNode} - Dropdown Component Primitive
+ */
+const DropdownComponent = (props: DropdownProps): React.ReactNode => {
+  const hooks = useDropdown(props);
 
   return (
-    <React.Fragment>
-      <div className={Styles.container()}>
-        {_renderSelectedValue(selected, toggle)}
-        <ButtonComponent intent={'secondary'} size={'full'} onPress={() => setOpen((v) => !v)} />
-        <FaChevronDown onClick={() => setOpen((v) => !v)} className={Styles.chevronIcon()} />
+    <div className="flex flex-col w-full">
+      <div className={Styles.container(props)}>
+        {_renderSelectedValue(hooks)}
+        <ButtonComponent intent="secondary" size="full" onPress={() => hooks.setOpen((v) => !v)} />
+        {_renderIconChevron(hooks)}
       </div>
-      {open && (portal ? createPortal(content, document.body) : content)}
-    </React.Fragment>
+      {_renderContentOpenWrapper(hooks, props)}
+    </div>
   );
 };
 

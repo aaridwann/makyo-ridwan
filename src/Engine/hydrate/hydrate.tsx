@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import hydrateNode from './hydrate.node';
 
 import type { BlueprintPayload } from '../../Blueprint/blueprint.types';

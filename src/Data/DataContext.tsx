@@ -1,22 +1,42 @@
-import { get as lg, set as ls } from 'lodash';
-import React from 'react';
+import { get as getData, set as setData } from 'lodash';
+import React, { useContext, useState } from 'react';
 
-const Ctx = React.createContext<object>(null);
+import type { ReactNode } from 'react';
 
-export function DataProvider({ children }) {
-  const [state, setState] = React.useState({});
+export interface DataContextType {
+  get: <T = unknown>(path: string) => T;
+  set: (path: string, value: unknown) => void;
+}
 
-  const get = (path: string) => lg(state, path);
+interface DataProviderProps {
+  children: ReactNode;
+}
 
-  const set = (path: string, value: any) => {
+const Ctx = React.createContext<DataContextType | undefined>(undefined);
+
+export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
+  const [state, setState] = useState<Record<string, unknown>>({});
+
+  const get = <T,>(path: string): T => {
+    return getData(state, path) as T;
+  };
+
+  const set = (path: string, value: unknown): void => {
     const next = structuredClone(state);
 
-    ls(next, path, value);
+    setData(next, path, value);
     setState(next);
-    console.log('autosave', next);
   };
 
   return <Ctx.Provider value={{ get, set }}>{children}</Ctx.Provider>;
-}
+};
 
-export const useData = () => React.useContext(Ctx);
+export const UseData = (): DataContextType => {
+  const context = useContext(Ctx);
+
+  if (!context) {
+    throw new Error('useData must be used within a DataProvider');
+  }
+
+  return context;
+};

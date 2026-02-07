@@ -1,31 +1,48 @@
 {
     "roots": [
         {
-            "id": "1",
+            "id": "stack-root",
             "type": "stack",
+            "props": {
+                "direction": "row",
+                "gap": "xl"
+            },
             "children": [
                 {
                     "id": "2",
-                    "type": "text",
+                    "type": "dropdown",
                     "props": {
-                        "value": "Hello"
-                    }
-                },
-                {
-                    "id": "3",
-                    "type": "button",
-                    "props": {
-                        "label": "Save"
-                    },
-                    "children": [
-                        {
-                            "id": "2",
-                            "type": "text",
-                            "props": {
-                                "value": "Hello"
+                        "value": "Hello",
+                        "size": "xs",
+                        "placeholder": "Choose your country",
+                        "label": "State",
+                        "multiple": true,
+                        "searchable": true,
+                        "outlined": true,
+                        "options": [
+                            {
+                                "value": "indonesia",
+                                "label": "Indonesia"
+                            },
+                            {
+                                "value": "singapore",
+                                "label": "Singapore"
+                            },
+                            {
+                                "value": "australia",
+                                "label": "Australia"
+                            },
+                            {
+                                "value": "arab",
+                                "label": "arab"
+                            },
+                            {
+                                "value": "china",
+                                "label": "china"
                             }
-                        }
-                    ]
+                        ]
+                    },
+                    "bind": "country"
                 }
             ]
         }

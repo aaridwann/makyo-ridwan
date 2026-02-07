@@ -28,6 +28,14 @@ const _getPropsInput = (
 });
 
 /**
+ * Render reset icon
+ * @param {PropsInput} props - Props
+ * @returns {React.ReactNode} - Render reset icon
+ */
+const _renderResetIcon = (props: PropsInput): React.ReactNode =>
+  props.value && <IoIosCloseCircle onClick={props.onReset} color={'gray'} size={25} />;
+
+/**
  * Input component
  * @param {PropsInput} props - props of input
  * @returns {React.ReactNode}
@@ -36,7 +44,7 @@ const InputComponent = (props: PropsInput): React.ReactNode => (
   <span className={Styles.inputContainer()}>
     {!props.withIcon && <CiSearch color={'gray'} size={25} />}
     <input {..._getPropsInput(props)} />
-    <IoIosCloseCircle onClick={props.onReset} color={'gray'} size={25} />
+    {_renderResetIcon(props)}
   </span>
 );
 
