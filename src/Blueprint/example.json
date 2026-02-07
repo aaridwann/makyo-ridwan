@@ -1,0 +1,33 @@
+{
+    "roots": [
+        {
+            "id": "1",
+            "type": "stack",
+            "children": [
+                {
+                    "id": "2",
+                    "type": "text",
+                    "props": {
+                        "value": "Hello"
+                    }
+                },
+                {
+                    "id": "3",
+                    "type": "button",
+                    "props": {
+                        "label": "Save"
+                    },
+                    "children": [
+                        {
+                            "id": "2",
+                            "type": "text",
+                            "props": {
+                                "value": "Hello"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
