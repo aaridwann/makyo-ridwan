@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "postbuild": "yarn build-storybook && rm -rf public/storybook && mv storybook-static public/storybook",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand"
