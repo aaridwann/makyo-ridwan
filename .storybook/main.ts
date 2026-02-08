@@ -4,6 +4,5 @@ const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [],
   framework: '@storybook/react-vite',
-  staticDirs: ['../public'],
 };
 export default config;

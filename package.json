@@ -9,8 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "postbuild": "yarn build-storybook && rm -rf public/storybook && mv storybook-static public/storybook",
+    "build-storybook": "storybook build -o storybook-static",
+    "postbuild": "yarn build-storybook",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand"
