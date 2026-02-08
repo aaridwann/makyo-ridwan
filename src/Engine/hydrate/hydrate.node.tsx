@@ -1,4 +1,4 @@
-import { get, isArray } from 'lodash';
+import { get as getLodash, isArray } from 'lodash';
 import React from 'react';
 
 import registry from '../registry';
@@ -32,9 +32,9 @@ const _getSlots = (node: BlueprintNode, ctx: HydrationContext): Record<string, u
  * @returns {React.ReactNode[] | null} - get children node
  */
 const _getChildren = (node: BlueprintNode, ctx: HydrationContext): React.ReactNode => {
-  console.log('===> node', node);
-
-  if (typeof node.children === 'string') {return node.children;}
+  if (typeof node.children === 'string') {
+    return node.children;
+  }
 
   if (isArray(node.children)) {
     return node.children.map((child) => hydrateNode(child, ctx));
@@ -80,12 +80,12 @@ const _getBindingProps = (
  * @returns {React.ReactNode} - parse hydrate node
  */
 const hydrateNode = (node: BlueprintNode, ctx: HydrationContext): React.ReactNode => {
-  const typeNode = get(node, 'type');
+  const typeNode = getLodash(node, 'type');
   const Component = registry[typeNode];
 
-  console.log('=== component', Component);
-
-  if (!Component) {return null;}
+  if (!Component) {
+    return null;
+  }
 
   ctx.stack.push(typeNode);
 

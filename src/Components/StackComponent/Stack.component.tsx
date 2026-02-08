@@ -1,3 +1,5 @@
+import cn from '../../Lib/cn';
+
 import Styles from './Stack.component.styles';
 
 import type { StackProps } from './Stack.component.types';
@@ -9,7 +11,18 @@ import type React from 'react';
  * @returns {React.ReactNode} - Stack Component
  */
 const StackComponent = (props: StackProps): React.ReactNode => {
-  return <div className={Styles.stackContainer(props)}>{props.children}</div>;
+  const { direction, align, justify, wrap, gap } = props;
+
+  return (
+    <div
+      className={cn(
+        Styles.stackContainer({ direction, align, justify, wrap, gap }),
+        props.className,
+      )}
+    >
+      {props.children}
+    </div>
+  );
 };
 
 export default StackComponent;

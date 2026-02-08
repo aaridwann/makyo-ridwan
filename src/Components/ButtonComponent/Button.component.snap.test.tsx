@@ -2,7 +2,9 @@ import { render } from '@testing-library/react';
 
 import ButtonComponent from './Button.component';
 
-const buttonConfigs: Array<{ desc: string; props: any }> = [
+import type { ButtonProps } from './Button.component.types';
+
+const buttonConfigs: Array<{ desc: string; props: ButtonProps }> = [
   {
     desc: 'Default button',
     props: {

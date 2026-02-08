@@ -36,6 +36,9 @@ const closeCircleButton = cva('cursor-pointer');
 const wrapperContent = cva('mt-2 rounded outline outline-gray-200 bg-white shadow', {
   variants: {
     size,
+    portal: {
+      true: 'absolute',
+    },
   },
   defaultVariants: {
     size: 'xl',

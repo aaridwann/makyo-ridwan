@@ -35,7 +35,7 @@ exports[`TextComponent snapshots default 1`] = `
 exports[`TextComponent snapshots heading variant 1`] = `
 <div>
   <span
-    class="text-xl font-semibold text-neutral-900 font-normal text-left whitespace-normal"
+    class="text-xl text-neutral-900 font-normal text-left whitespace-normal"
   >
     Heading
   </span>
@@ -45,7 +45,7 @@ exports[`TextComponent snapshots heading variant 1`] = `
 exports[`TextComponent snapshots title 1`] = `
 <div>
   <h1
-    class="text-sm text-neutral-900 font-normal text-left truncate whitespace-nowrap overflow-hidden text-ellipsis"
+    class="text-sm text-neutral-900 font-normal text-left whitespace-nowrap overflow-hidden text-ellipsis"
   >
     Title text
   </h1>
@@ -55,7 +55,7 @@ exports[`TextComponent snapshots title 1`] = `
 exports[`TextComponent snapshots truncate 1`] = `
 <div>
   <span
-    class="text-sm text-neutral-900 font-normal text-left truncate whitespace-nowrap overflow-hidden text-ellipsis"
+    class="text-sm text-neutral-900 font-normal text-left whitespace-nowrap overflow-hidden text-ellipsis"
   >
     Very long text here
   </span>

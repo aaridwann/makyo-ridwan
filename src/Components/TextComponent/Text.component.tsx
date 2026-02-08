@@ -1,5 +1,7 @@
 import React from 'react';
 
+import cn from '../../Lib/cn';
+
 import Styles from './Text.component.styles';
 
 import type { TextProps } from './Text.component.types';
@@ -17,7 +19,7 @@ const TextComponent = ({
   const Component = as || 'span';
 
   return (
-    <Component className={Styles.textRoot({ variant, className, ...rest })} {...rest}>
+    <Component className={cn(Styles.textRoot({ variant, ...rest }), className)} {...rest}>
       {children}
     </Component>
   );

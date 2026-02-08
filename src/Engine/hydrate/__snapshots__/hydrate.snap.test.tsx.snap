@@ -2,7 +2,7 @@
 
 exports[`hydrate() nested nodes 1`] = `
 <div
-  class="flex-1 flex-col items-start justify-start flex-nowrap gap-4"
+  class="flex w-full box-border flex-col items-start justify-start flex-nowrap gap-4"
 >
   <span
     class="text-sm text-neutral-900 font-normal text-left whitespace-normal"
@@ -16,22 +16,16 @@ exports[`hydrate() nested nodes 1`] = `
       class="relative h-12 flex w-full items-center rounded outline outline-gray-200 bg-transparent min-w-sm"
     >
       <div
-        class="mx-4"
+        class="mx-4 cursor-pointer"
       >
         <span
-          class="text-sm font-medium text-neutral-900 font-normal text-left whitespace-nowrap"
+          class="text-sm text-neutral-900 font-normal text-left whitespace-nowrap"
         >
           Choose your country
         </span>
       </div>
       <button
-        class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50
-   bg-muted text-foreground w-full h-full rounded-md gap-2"
+        class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 bg-transparent text-foreground hover:bg-muted w-full h-full rounded-md gap-2"
       />
       <button
         class="w-10"

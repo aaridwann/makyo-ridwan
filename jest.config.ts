@@ -6,4 +6,9 @@ export default {
     '\\.(css|less|scss)$': 'identity-obj-proxy',
   },
   testMatch: ['**/*.test.{ts,tsx}'],
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+    },
+  },
 };

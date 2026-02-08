@@ -1,11 +1,9 @@
 export interface BlueprintNode {
   id: string;
   type: string;
-
-  props?: Record<string, any>;
+  props?: Record<string, unknown>;
   children?: BlueprintNode[];
   slots?: Record<string, BlueprintNode[]>;
-
   meta?: {
     dataBinding?: string;
     visibility?: string;

@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const buttonRoot = cva(
+const buttonRoot = cva(
   `
   inline-flex items-center justify-center
   font-medium transition cursor-pointer
@@ -40,3 +40,5 @@ export const buttonRoot = cva(
     },
   },
 );
+
+export default { buttonRoot };

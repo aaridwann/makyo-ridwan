@@ -1,9 +1,11 @@
 import { IoIosCloseCircle } from '@react-icons/all-files/io/IoIosCloseCircle';
+import { get } from 'lodash';
 import * as React from 'react';
 import { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { FaChevronDown } from 'react-icons/fa6';
 
+import cn from '../../Lib/cn';
 import ButtonComponent from '../ButtonComponent';
 import InputComponent from '../InputComponent';
 import TextComponent from '../TextComponent';
@@ -42,7 +44,10 @@ const _renderSelectedValue = (hooks: UseDropdownReturn, props: DropdownProps): R
   hooks.selected && (
     <div className={Styles.wrapperSelectedValue()}>
       {hooks.selected.map((value, index) => (
-        <div key={value || index} className={Styles.itemSelectedValue(props)}>
+        <div
+          key={value || index}
+          className={cn(Styles.itemSelectedValue({ outlined: props.outlined }), props.className)}
+        >
           <h3>{value}</h3>
           {
             <IoIosCloseCircle
@@ -63,19 +68,36 @@ const _renderSelectedValue = (hooks: UseDropdownReturn, props: DropdownProps): R
  * @param {DropdownProps} props - Props
  * @returns {React.ReactNode} - Render content open
  */
-const _renderContentOpen = (hooks: UseDropdownReturn, props: DropdownProps): React.ReactNode => (
-  <div className={Styles.wrapperContent(props)}>
-    {props.searchable && (
-      <InputComponent
-        value={hooks.search}
-        onChange={hooks.setSearch}
-        onReset={() => hooks.setSearch('')}
-        size="full"
-      />
-    )}
-    {_renderList(hooks)}
-  </div>
-);
+const _renderContentOpen = (
+  hooks: UseDropdownReturn,
+  props: DropdownProps,
+  wrapperRef?: React.RefObject<HTMLDivElement | null>,
+): React.ReactNode => {
+  const width = get(hooks, 'widthPortal.width', 'auto');
+  const left = get(hooks, 'widthPortal.left', 0);
+  const style = props.portal ? { width, left } : undefined;
+
+  return (
+    <div
+      ref={props.portal ? wrapperRef : undefined}
+      style={{ ...style }}
+      className={cn(
+        Styles.wrapperContent({ size: props.size, portal: props.portal }),
+        props.className,
+      )}
+    >
+      {props.searchable && (
+        <InputComponent
+          value={hooks.search}
+          onChange={hooks.setSearch}
+          onReset={() => hooks.setSearch('')}
+          size="full"
+        />
+      )}
+      {_renderList(hooks)}
+    </div>
+  );
+};
 
 /**
  * render content wrapper
@@ -86,13 +108,14 @@ const _renderContentOpen = (hooks: UseDropdownReturn, props: DropdownProps): Rea
 const _renderContentOpenWrapper = (
   props: DropdownProps,
   hooks: UseDropdownReturn,
+  wrapperRef: React.RefObject<HTMLDivElement | null>,
 ): React.ReactNode => {
   if (!hooks.open) {
     return null;
   }
 
   return props.portal
-    ? createPortal(_renderContentOpen(hooks, props), document.body)
+    ? createPortal(_renderContentOpen(hooks, props, wrapperRef), document.body)
     : _renderContentOpen(hooks, props);
 };
 
@@ -131,7 +154,12 @@ const _renderDropdownContent = (
   props: DropdownProps,
   hooks: UseDropdownReturn,
 ): React.ReactNode => (
-  <div className={Styles.container(props)}>
+  <div
+    className={cn(
+      Styles.container({ outlined: props.outlined, size: props.size }),
+      props.className,
+    )}
+  >
     {hooks.selected.length ? _renderSelectedValue(hooks, props) : _renderPlaceHolder(props, hooks)}
     <ButtonComponent intent="ghost" size="full" onPress={() => hooks.setOpen((v) => !v)} />
     {_renderIconChevron(hooks)}
@@ -149,6 +177,7 @@ const useDropdown = (props: DropdownProps, wrapperRef: Ref): UseDropdownReturn =
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [internalSelected, setInternalSelected] = useState<string[]>([]);
+  const [widthPortal, setWidthPortal] = useState<DOMRect>();
 
   const selected = value ?? internalSelected;
 
@@ -181,6 +210,12 @@ const useDropdown = (props: DropdownProps, wrapperRef: Ref): UseDropdownReturn =
     return filtering ? filterResult : options;
   }, [options, search, filtering]);
 
+  React.useLayoutEffect(() => {
+    const parentSize = wrapperRef?.current?.getBoundingClientRect();
+
+    setWidthPortal(parentSize);
+  }, [wrapperRef, props.portal]);
+
   React.useEffect(() => {
     if (open) {
       document.addEventListener('mousedown', handleClickOutside(wrapperRef, setOpen));
@@ -189,9 +224,9 @@ const useDropdown = (props: DropdownProps, wrapperRef: Ref): UseDropdownReturn =
     return () => {
       document.removeEventListener('mousedown', handleClickOutside(wrapperRef, setOpen));
     };
-  }, [wrapperRef, open]);
+  }, [wrapperRef, open, props.portal]);
 
-  return { open, setSearch, filtered, handleSelect, search, setOpen, selected };
+  return { open, setSearch, filtered, handleSelect, search, setOpen, selected, widthPortal };
 };
 
 /**
@@ -204,9 +239,9 @@ const DropdownComponent = (props: DropdownProps): React.ReactNode => {
   const hooks = useDropdown(props, wrapperRef);
 
   return (
-    <div ref={wrapperRef} className={Styles.containerWrapper()}>
+    <div ref={wrapperRef} className={cn(Styles.containerWrapper(), props.className)}>
       {_renderDropdownContent(props, hooks)}
-      {_renderContentOpenWrapper(props, hooks)}
+      {_renderContentOpenWrapper(props, hooks, wrapperRef)}
     </div>
   );
 };

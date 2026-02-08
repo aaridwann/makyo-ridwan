@@ -9,16 +9,16 @@ exports[`DropdownComponent snapshots should match snapshot - Multi select, searc
       class="relative h-12 flex w-full items-center rounded outline outline-gray-200 bg-transparent max-w-3xl"
     >
       <div
-        class="flex gap-1 z-10"
-      />
+        class="mx-4 cursor-pointer"
+      >
+        <span
+          class="text-sm text-neutral-900 font-normal text-left whitespace-nowrap"
+        >
+          choose something
+        </span>
+      </div>
       <button
-        class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50
-   bg-muted text-foreground w-full h-full rounded-md gap-2"
+        class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 bg-transparent text-foreground hover:bg-muted w-full h-full rounded-md gap-2"
       />
       <button
         class="w-10"
@@ -52,16 +52,16 @@ exports[`DropdownComponent snapshots should match snapshot - Single select, not 
       class="relative h-12 flex w-full items-center rounded outline outline-gray-200 bg-transparent max-w-3xl"
     >
       <div
-        class="flex gap-1 z-10"
-      />
+        class="mx-4 cursor-pointer"
+      >
+        <span
+          class="text-sm text-neutral-900 font-normal text-left whitespace-nowrap"
+        >
+          choose something
+        </span>
+      </div>
       <button
-        class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50
-   bg-muted text-foreground w-full h-full rounded-md gap-2"
+        class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 bg-transparent text-foreground hover:bg-muted w-full h-full rounded-md gap-2"
       />
       <button
         class="w-10"
@@ -95,16 +95,16 @@ exports[`DropdownComponent snapshots should match snapshot - Single select, sear
       class="relative h-12 flex w-full items-center rounded outline outline-gray-200 bg-transparent max-w-3xl"
     >
       <div
-        class="flex gap-1 z-10"
-      />
+        class="mx-4 cursor-pointer"
+      >
+        <span
+          class="text-sm text-neutral-900 font-normal text-left whitespace-nowrap"
+        >
+          choose something
+        </span>
+      </div>
       <button
-        class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50
-   bg-muted text-foreground w-full h-full rounded-md gap-2"
+        class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 bg-transparent text-foreground hover:bg-muted w-full h-full rounded-md gap-2"
       />
       <button
         class="w-10"

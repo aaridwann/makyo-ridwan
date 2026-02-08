@@ -3,13 +3,7 @@
 exports[`ButtonComponent snapshots should match snapshot - Compact density 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-blue-500 h-10 px-4 text-base rounded-md gap-1"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-blue-500 h-10 px-4 text-base rounded-md gap-1"
   >
     Compact
   </button>
@@ -19,13 +13,7 @@ exports[`ButtonComponent snapshots should match snapshot - Compact density 1`] =
 exports[`ButtonComponent snapshots should match snapshot - Default button 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
   >
     Button
   </button>
@@ -35,13 +23,7 @@ exports[`ButtonComponent snapshots should match snapshot - Default button 1`] = 
 exports[`ButtonComponent snapshots should match snapshot - Disabled button 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
     disabled=""
   >
     Disabled
@@ -52,13 +34,7 @@ exports[`ButtonComponent snapshots should match snapshot - Disabled button 1`] =
 exports[`ButtonComponent snapshots should match snapshot - Full radius button 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-blue-500 h-10 px-4 text-base rounded-full gap-2"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-blue-500 h-10 px-4 text-base rounded-full gap-2"
   >
     Rounded
   </button>
@@ -68,13 +44,7 @@ exports[`ButtonComponent snapshots should match snapshot - Full radius button 1`
 exports[`ButtonComponent snapshots should match snapshot - Large button 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-blue-500 h-12 px-6 text-lg rounded-md gap-2"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-blue-500 h-12 px-6 text-lg rounded-md gap-2"
   >
     Large
   </button>
@@ -84,13 +54,7 @@ exports[`ButtonComponent snapshots should match snapshot - Large button 1`] = `
 exports[`ButtonComponent snapshots should match snapshot - Loading state 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
     disabled=""
   >
     Loading...
@@ -101,13 +65,7 @@ exports[`ButtonComponent snapshots should match snapshot - Loading state 1`] = `
 exports[`ButtonComponent snapshots should match snapshot - Primary button 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
   >
     Primary
   </button>
@@ -117,13 +75,7 @@ exports[`ButtonComponent snapshots should match snapshot - Primary button 1`] = 
 exports[`ButtonComponent snapshots should match snapshot - Secondary button 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-gray-200 h-10 px-4 text-base rounded-md gap-2"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-gray-200 h-10 px-4 text-base rounded-md gap-2"
   >
     Secondary
   </button>
@@ -133,13 +85,7 @@ exports[`ButtonComponent snapshots should match snapshot - Secondary button 1`] 
 exports[`ButtonComponent snapshots should match snapshot - With start icon 1`] = `
 <div>
   <button
-    class="
-  inline-flex items-center justify-center
-  font-medium transition
-  focus-visible:outline-none
-  focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50 text-white
-   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+    class="inline-flex items-center justify-center font-medium transition cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 text-white bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
   >
     <span>
       ICON

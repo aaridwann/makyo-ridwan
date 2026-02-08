@@ -10,10 +10,13 @@ export type TextProps<T extends ElementType = 'span'> = VariantProps<
   as?: T;
   children: ReactNode;
   variant?: TextVariant;
+  className?: string;
 } & Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'children'>;
 
 export type Configs = {
   desc: string;
-  props?: any;
+  props?: TextProps;
   children?: React.ReactNode;
 };
+
+export type configsTest = { desc: string; props?: Partial<TextProps>; children: ReactNode };

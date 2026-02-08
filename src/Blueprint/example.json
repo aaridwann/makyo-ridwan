@@ -29,6 +29,7 @@
                         "multiple": true,
                         "searchable": true,
                         "outlined": true,
+                        "portal": false,
                         "options": [
                             {
                                 "value": "indonesia",

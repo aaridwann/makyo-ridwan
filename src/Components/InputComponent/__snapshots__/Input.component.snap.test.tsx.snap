@@ -85,6 +85,7 @@ exports[`InputComponent snapshots should match snapshot - Input with reset icon 
     />
     <svg
       color="gray"
+      data-testid="reset-icon"
       fill="currentColor"
       height="25"
       stroke="currentColor"
@@ -137,6 +138,7 @@ exports[`InputComponent snapshots should match snapshot - Input with text value 
     />
     <svg
       color="gray"
+      data-testid="reset-icon"
       fill="currentColor"
       height="25"
       stroke="currentColor"

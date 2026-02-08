@@ -2,9 +2,9 @@ import { render } from '@testing-library/react';
 
 import TextComponent from './Text.component';
 
-import type { Configs } from './Text.component.types';
+import type { configsTest } from './Text.component.types';
 
-const cases: Configs[] = [
+const configs: configsTest[] = [
   {
     desc: 'default',
     children: 'Hello',
@@ -51,7 +51,7 @@ const cases: Configs[] = [
 ];
 
 describe('TextComponent snapshots', () => {
-  cases.map(({ desc, props, children }) => {
+  configs.map(({ desc, props, children }) => {
     it(desc, () => {
       const { container } = render(<TextComponent {...props}>{children}</TextComponent>);
 

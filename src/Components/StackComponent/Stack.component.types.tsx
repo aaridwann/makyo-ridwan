@@ -5,6 +5,7 @@ export type BaseProps = {
   direction?: 'row' | 'column';
   gap?: number;
   children?: React.ReactNode;
+  className?: string;
 };
 
 export type StackProps = VariantProps<(typeof Styles)['stackContainer']> & BaseProps;

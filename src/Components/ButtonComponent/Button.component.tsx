@@ -1,6 +1,8 @@
 import * as React from 'react';
 
-import { buttonRoot } from './Button.component.styles';
+import cn from '../../Lib/cn';
+
+import Styles from './Button.component.styles';
 
 import type { ButtonProps } from './Button.component.types';
 
@@ -10,13 +12,13 @@ import type { ButtonProps } from './Button.component.types';
  * @returns {React.ReactNode} - Button Component Primitive
  */
 const _getButtonProps = (props: ButtonProps): React.ButtonHTMLAttributes<HTMLButtonElement> => {
-  const { loading, disabled, ariaLabel, onPress, ...variants } = props;
+  const { loading, disabled, ariaLabel, onPress, intent, size, radius, density } = props;
 
   return {
     'aria-label': ariaLabel,
     disabled: disabled || loading,
     onClick: onPress,
-    className: buttonRoot(variants),
+    className: cn(Styles.buttonRoot({ intent, size, radius, density }), props.className),
   };
 };
 

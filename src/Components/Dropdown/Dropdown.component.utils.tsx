@@ -11,6 +11,8 @@ import type { Ref } from './Dropdown.component.types';
 const handleClickOutside =
   (wrapperRef: Ref, setOpen: React.Dispatch<boolean>) =>
   (event: MouseEvent): void => {
+    event.stopImmediatePropagation();
+
     if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
       setOpen(false);
     }

@@ -9,7 +9,9 @@ jest.mock('../../Data/DataContext', () => ({
   }),
 }));
 
-const configs = [
+type ConfigsTest = { desc: string; payload: object };
+
+const configs: ConfigsTest[] = [
   {
     desc: 'simple text',
     payload: {
@@ -79,7 +81,7 @@ const configs = [
 ];
 
 describe('hydrate()', () => {
-  configs.map(({ desc, payload }) => {
+  configs.map(({ desc, payload }: { desc: string; payload: object }) => {
     it(desc, () => {
       const { container } = render(<>{hydrate(payload as any)}</>);
 
