@@ -22,7 +22,7 @@ export type DropdownOption = {
 export type DropdownProps<T = unknown> = VariantProps<(typeof Styles)['container']> & {
   options: DropdownOption[];
   value?: string[];
-  onChange: (value: T | T[]) => void;
+  onChange?: (value: T | T[]) => void;
   multiple?: boolean;
   searchable?: boolean;
   portal?: boolean;

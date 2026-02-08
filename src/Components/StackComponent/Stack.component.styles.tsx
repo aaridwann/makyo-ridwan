@@ -22,12 +22,10 @@ const stackContainer = cva('flex w-full box-border', {
       around: 'justify-around',
       evenly: 'justify-evenly',
     },
-
     wrap: {
       true: 'flex-wrap',
       false: 'flex-nowrap',
     },
-
     gap: {
       none: 'gap-0',
       xs: 'gap-1',

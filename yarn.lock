@@ -1097,6 +1097,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.1"
 
+"@storybook/addon-styling-webpack@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-styling-webpack/-/addon-styling-webpack-3.0.0.tgz#eb0fc23cebc223a36c3c92b79b44cdd362aa078f"
+  integrity sha512-6iI7wGf/tEt5awB8NYAWU+I/hI7PwOdoaNb5V8Z+GkhEko4nZFpXfp8jz2nMblAnx9Jsl95LfIaH9Spa0JksuQ==
+
 "@storybook/builder-vite@10.2.7":
   version "10.2.7"
   resolved "https://registry.yarnpkg.com/@storybook/builder-vite/-/builder-vite-10.2.7.tgz#0f1e5daaa29c79d6736e9cebbb66185920fbde33"

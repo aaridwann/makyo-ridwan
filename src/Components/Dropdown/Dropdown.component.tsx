@@ -15,8 +15,7 @@ import type { DropdownProps, Ref, UseDropdownReturn } from './Dropdown.component
 
 /**
  * Render List options
- * @param {DropdownProps['options']} list - List options
- * @param {OnSelect} onSelect - OnSelect method
+ * @param {UseDropdownReturn} hooks - hooks
  * @returns {React.ReactNode} - Render List options
  */
 const _renderList = (hooks: UseDropdownReturn): React.ReactNode => (
@@ -35,15 +34,15 @@ const _renderList = (hooks: UseDropdownReturn): React.ReactNode => (
 
 /**
  * Render Selected value
- * @param {String[]} values - Selected value
- * @param {OnSelect} onClick - OnSelect method
+ * @param {UseDropdownReturn} hooks - hooks
+ * @param {DropdownProps} props - Props
  * @returns {React.ReactNode} - Render Selected value
  */
-const _renderSelectedValue = (hooks: UseDropdownReturn): React.ReactNode =>
+const _renderSelectedValue = (hooks: UseDropdownReturn, props: DropdownProps): React.ReactNode =>
   hooks.selected && (
     <div className={Styles.wrapperSelectedValue()}>
       {hooks.selected.map((value, index) => (
-        <div key={value || index} className={Styles.itemSelectedValue()}>
+        <div key={value || index} className={Styles.itemSelectedValue(props)}>
           <h3>{value}</h3>
           {
             <IoIosCloseCircle
@@ -111,10 +110,11 @@ const _renderIconChevron = (hooks: UseDropdownReturn): React.ReactNode => (
 /**
  * Render place holder
  * @param {DropdownProps} props - props
+ * @param {UseDropdownReturn} hooks - Hooks
  * @returns {React.ReactNode} - Render place holder
  */
-const _renderPlaceHolder = (props: DropdownProps): React.ReactNode => (
-  <div className={Styles.wrapperPlaceholder()}>
+const _renderPlaceHolder = (props: DropdownProps, hooks: UseDropdownReturn): React.ReactNode => (
+  <div onClick={() => hooks.setOpen((prev) => !prev)} className={Styles.wrapperPlaceholder()}>
     <TextComponent multiline={false} variant="label">
       {props.placeholder}
     </TextComponent>
@@ -132,7 +132,7 @@ const _renderDropdownContent = (
   hooks: UseDropdownReturn,
 ): React.ReactNode => (
   <div className={Styles.container(props)}>
-    {hooks.selected.length ? _renderSelectedValue(hooks) : _renderPlaceHolder(props)}
+    {hooks.selected.length ? _renderSelectedValue(hooks, props) : _renderPlaceHolder(props, hooks)}
     <ButtonComponent intent="ghost" size="full" onPress={() => hooks.setOpen((v) => !v)} />
     {_renderIconChevron(hooks)}
   </div>
@@ -156,7 +156,7 @@ const useDropdown = (props: DropdownProps, wrapperRef: Ref): UseDropdownReturn =
     let next: string[];
 
     if (!multiple) {
-      next = [v];
+      next = selected.includes(v) ? selected.filter((s) => s !== v) : [v];
       setOpen(false);
     } else {
       next = selected.includes(v) ? selected.filter((s) => s !== v) : [...selected, v];
