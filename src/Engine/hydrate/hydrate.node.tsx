@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+import { get, isArray } from 'lodash';
 import React from 'react';
 
-import { UseData, type DataContextType } from '../../Data/DataContext';
 import registry from '../registry';
 
 import type { HydrationContext, BlueprintNode } from './hydrate.types';
+import type { DataContextType } from '../../Data/Data.context.types';
 
 /**
  * get slots
@@ -31,8 +31,16 @@ const _getSlots = (node: BlueprintNode, ctx: HydrationContext): Record<string, u
  * @param {HydrationContext} ctx - Context
  * @returns {React.ReactNode[] | null} - get children node
  */
-const _getChildren = (node: BlueprintNode, ctx: HydrationContext): React.ReactNode[] | null => {
-  return node.children?.map((child) => hydrateNode(child, ctx)) || null;
+const _getChildren = (node: BlueprintNode, ctx: HydrationContext): React.ReactNode => {
+  console.log('===> node', node);
+
+  if (typeof node.children === 'string') {return node.children;}
+
+  if (isArray(node.children)) {
+    return node.children.map((child) => hydrateNode(child, ctx));
+  }
+
+  return null;
 };
 
 /**
@@ -72,18 +80,18 @@ const _getBindingProps = (
  * @returns {React.ReactNode} - parse hydrate node
  */
 const hydrateNode = (node: BlueprintNode, ctx: HydrationContext): React.ReactNode => {
-  const { get, set } = UseData();
-  const Component = registry[node.type];
+  const typeNode = get(node, 'type');
+  const Component = registry[typeNode];
 
-  if (!Component) {
-    return null;
-  }
+  console.log('=== component', Component);
 
-  ctx.stack.push(node.type);
+  if (!Component) {return null;}
+
+  ctx.stack.push(typeNode);
 
   const children = _getChildren(node, ctx);
   const slots = _getSlots(node, ctx);
-  const bindingProps = node.bind ? _getBindingProps(node.bind, get, set) : {};
+  const bindingProps = node?.bind ? _getBindingProps(node.bind, ctx.data.get, ctx.data.set) : {};
 
   ctx.stack.pop();
 

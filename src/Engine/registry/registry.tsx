@@ -1,4 +1,4 @@
-import ButtonComponent from '../../Components/Button';
+import ButtonComponent from '../../Components/ButtonComponent';
 import DropdownComponent from '../../Components/Dropdown';
 import StackComponent from '../../Components/StackComponent';
 import TextComponent from '../../Components/TextComponent';

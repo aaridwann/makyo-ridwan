@@ -37,6 +37,10 @@ const wrapperContent = cva('mt-2 rounded outline outline-gray-200 bg-white shado
 const invisibleButton = cva('w-full h-full bg-white');
 const listOptionItems = cva('cursor-pointer px-3 py-2 hover:bg-blue-100/40');
 const chevronIcon = cva('mr-4');
+const buttonChevronIcon = cva('w-10');
+const containerWrapper = cva('flex flex-col w-full');
+const markerText = cva('bg-blue-300 px-1');
+const wrapperPlaceholder = cva('mx-4');
 
 export default {
   container,
@@ -47,4 +51,8 @@ export default {
   invisibleButton,
   listOptionItems,
   chevronIcon,
+  buttonChevronIcon,
+  containerWrapper,
+  markerText,
+  wrapperPlaceholder,
 };

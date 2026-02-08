@@ -37,6 +37,4 @@ const ButtonComponent = (props: ButtonProps): React.ReactNode => {
   );
 };
 
-ButtonComponent.displayName = 'PrimitiveButton';
-
 export default ButtonComponent;

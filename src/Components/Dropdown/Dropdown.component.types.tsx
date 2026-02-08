@@ -12,6 +12,8 @@ export interface UseDropdownReturn {
   setOpen: (open: boolean | ((prev: boolean) => boolean)) => void;
 }
 
+export type Ref = React.RefObject<HTMLDivElement | null>;
+
 export type DropdownOption = {
   label: string;
   value: string;
@@ -27,6 +29,7 @@ export type DropdownProps<T = unknown> = VariantProps<(typeof Styles)['container
   renderOption?: (option: DropdownOption, selected: boolean) => ReactNode;
   placeholder?: string;
   outlined?: boolean;
+  filtering?: boolean;
 };
 
 export type OnSelect = (value: string) => void;

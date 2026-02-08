@@ -10,20 +10,16 @@ import testingLibrary from "eslint-plugin-testing-library";
 import jestDom from "eslint-plugin-jest-dom";
 import { defineConfig, globalIgnores } from "eslint/config";
 import prettier from "eslint-config-prettier";
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 
 export default defineConfig([
   globalIgnores(["dist"]),
-
-  /* ===============================
-     APPLICATION FILES
-  =============================== */
   {
     files: ["**/*.{ts,tsx}"],
-
     plugins: {
       import: importPlugin,
+      simpleImportSort
     },
-
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
@@ -31,7 +27,6 @@ export default defineConfig([
       reactRefresh.configs.vite,
       prettier,
     ],
-
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -39,7 +34,6 @@ export default defineConfig([
         project: "./tsconfig.eslint.json",
       },
     },
-
     rules: {
       "no-console": ["error", { allow: ["warn", "error"] }],
       "no-debugger": "error",
@@ -48,14 +42,9 @@ export default defineConfig([
       "no-implicit-coercion": "error",
       "eqeqeq": ["error", "always"],
       "curly": ["error", "all"],
-      "consistent-return": "error",
-
-      
+      "consistent-return": "error",   
       "semi": ["error", "always"],
       "quotes": ["error", "single", { avoidEscape: true }],
-     /* ===============================
-        🔚 Trailing Commas
-      =============================== */
       "comma-dangle": [
         "error",
         {
@@ -66,7 +55,6 @@ export default defineConfig([
           functions: "always-multiline",
         },
       ],
-
       "object-curly-spacing": ["error", "always"],
       "array-bracket-spacing": ["error", "never"],
       "space-before-function-paren": [
@@ -94,7 +82,6 @@ export default defineConfig([
           maxBOF: 0,
         },
       ],
-
       "sort-imports": "off",
       "import/order": [
         "error",
@@ -116,32 +103,18 @@ export default defineConfig([
           },
         },
       ],
-      /* ===============================
-        🧱 Blank Lines / Readability
-      =============================== */
       "padding-line-between-statements": [
         "error",
-
-        // blank line before if
         { blankLine: "always", prev: "*", next: "if" },
-
-        // blank line after if block
         { blankLine: "always", prev: "if", next: "*" },
-
-        // blank line before return
         { blankLine: "always", prev: "*", next: "return" },
-
-        // after variable declarations
         { blankLine: "always", prev: ["const", "let", "var"], next: "*" },
-
-        // no blank line between consecutive vars
         {
           blankLine: "any",
           prev: ["const", "let", "var"],
           next: ["const", "let", "var"]
         }
       ],
-
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/explicit-function-return-type": [
@@ -165,20 +138,14 @@ export default defineConfig([
           "ts-ignore": "allow-with-description",
         },
       ],
-
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "error",
-
       "react-refresh/only-export-components": [
         "error",
         { allowConstantExport: true },
       ],
     },
   },
-
-  /* ===============================
-     TEST FILES ONLY
-  =============================== */
   {
     files: ["**/*.test.{ts,tsx}"],
 
@@ -188,31 +155,5 @@ export default defineConfig([
       jestDom.configs["flat/recommended"],
     ],
   },
-
   ...storybook.configs["flat/recommended"],
 ]);
-
-
-// // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-// import storybook from "eslint-plugin-storybook";
-
-// import js from '@eslint/js'
-// import globals from 'globals'
-// import reactHooks from 'eslint-plugin-react-hooks'
-// import reactRefresh from 'eslint-plugin-react-refresh'
-// import tseslint from 'typescript-eslint'
-// import { defineConfig, globalIgnores } from 'eslint/config'
-
-// export default defineConfig([globalIgnores(['dist']), {
-//   files: ['**/*.{ts,tsx}'],
-//   extends: [
-//     js.configs.recommended,
-//     tseslint.configs.recommended,
-//     reactHooks.configs.flat.recommended,
-//     reactRefresh.configs.vite,
-//   ],
-//   languageOptions: {
-//     ecmaVersion: 2020,
-//     globals: globals.browser,
-//   },
-// }, ...storybook.configs["flat/recommended"]])

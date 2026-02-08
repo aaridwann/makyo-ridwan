@@ -3,16 +3,16 @@ import { cva } from 'class-variance-authority';
 export const buttonRoot = cva(
   `
   inline-flex items-center justify-center
-  font-medium transition
+  font-medium transition cursor-pointer
   focus-visible:outline-none
   focus-visible:ring-2 focus-visible:ring-primary
-  disabled:pointer-events-none disabled:opacity-50
+  disabled:pointer-events-none disabled:opacity-50 text-white
   `,
   {
     variants: {
       intent: {
-        primary: 'bg-primary text-white',
-        secondary: 'bg-muted text-foreground',
+        primary: 'bg-blue-500',
+        secondary: 'bg-gray-200',
         destructive: 'bg-destructive text-white',
         ghost: 'bg-transparent text-foreground hover:bg-muted',
       },

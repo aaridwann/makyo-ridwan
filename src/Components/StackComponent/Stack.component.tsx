@@ -1,14 +1,13 @@
 import Styles from './Stack.component.styles';
 
-import type { VariantProps } from 'class-variance-authority';
+import type { StackProps } from './Stack.component.types';
+import type React from 'react';
 
-type BaseProps = {
-  direction?: 'row' | 'column';
-  gap?: number;
-  children?: React.ReactNode;
-};
-type StackProps = VariantProps<(typeof Styles)['stackContainer']> & BaseProps;
-
+/**
+ * Stack Component
+ * @param {StackProps} props - Props
+ * @returns {React.ReactNode} - Stack Component
+ */
 const StackComponent = (props: StackProps): React.ReactNode => {
   return <div className={Styles.stackContainer(props)}>{props.children}</div>;
 };

@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`TextComponent snapshots as paragraph 1`] = `
+<div>
+  <p
+    class="text-sm text-neutral-900 font-normal text-left whitespace-normal"
+  >
+    Paragraph
+  </p>
+</div>
+`;
+
+exports[`TextComponent snapshots colored + bold 1`] = `
+<div>
+  <span
+    class="text-sm text-primary font-bold text-left whitespace-normal"
+    color="primary"
+    weight="bold"
+  >
+    Colored
+  </span>
+</div>
+`;
+
+exports[`TextComponent snapshots default 1`] = `
+<div>
+  <span
+    class="text-sm text-neutral-900 font-normal text-left whitespace-normal"
+  >
+    Hello
+  </span>
+</div>
+`;
+
+exports[`TextComponent snapshots heading variant 1`] = `
+<div>
+  <span
+    class="text-xl font-semibold text-neutral-900 font-normal text-left whitespace-normal"
+  >
+    Heading
+  </span>
+</div>
+`;
+
+exports[`TextComponent snapshots title 1`] = `
+<div>
+  <h1
+    class="text-sm text-neutral-900 font-normal text-left truncate whitespace-nowrap overflow-hidden text-ellipsis"
+  >
+    Title text
+  </h1>
+</div>
+`;
+
+exports[`TextComponent snapshots truncate 1`] = `
+<div>
+  <span
+    class="text-sm text-neutral-900 font-normal text-left truncate whitespace-nowrap overflow-hidden text-ellipsis"
+  >
+    Very long text here
+  </span>
+</div>
+`;

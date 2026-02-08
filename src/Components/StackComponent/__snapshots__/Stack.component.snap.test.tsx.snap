@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`StackComponent snapshots should match snapshot - Centered stack with gap 1`] = `
+<div>
+  <div
+    class="flex w-full box-border flex-col items-center justify-center flex-nowrap gap-6"
+  >
+    <div>
+      Centered
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StackComponent snapshots should match snapshot - Default stack 1`] = `
+<div>
+  <div
+    class="flex w-full box-border flex-col items-start justify-start flex-nowrap gap-4"
+  >
+    <div>
+      Item
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StackComponent snapshots should match snapshot - Full variant stack 1`] = `
+<div>
+  <div
+    class="flex w-full box-border flex-row items-center justify-between flex-nowrap gap-8"
+  >
+    <span>
+      Left
+    </span>
+    <span>
+      Right
+    </span>
+  </div>
+</div>
+`;
+
+exports[`StackComponent snapshots should match snapshot - Row direction 1`] = `
+<div>
+  <div
+    class="flex w-full box-border flex-row items-start justify-start flex-nowrap gap-4"
+  >
+    <div>
+      A
+    </div>
+    <div>
+      B
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StackComponent snapshots should match snapshot - Wrapped stack 1`] = `
+<div>
+  <div
+    class="flex w-full box-border flex-col items-start justify-start flex-wrap gap-4"
+  >
+    <div>
+      1
+    </div>
+    <div>
+      2
+    </div>
+    <div>
+      3
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ButtonComponent snapshots should match snapshot - Compact density 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-blue-500 h-10 px-4 text-base rounded-md gap-1"
+  >
+    Compact
+  </button>
+</div>
+`;
+
+exports[`ButtonComponent snapshots should match snapshot - Default button 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`ButtonComponent snapshots should match snapshot - Disabled button 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+    disabled=""
+  >
+    Disabled
+  </button>
+</div>
+`;
+
+exports[`ButtonComponent snapshots should match snapshot - Full radius button 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-blue-500 h-10 px-4 text-base rounded-full gap-2"
+  >
+    Rounded
+  </button>
+</div>
+`;
+
+exports[`ButtonComponent snapshots should match snapshot - Large button 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-blue-500 h-12 px-6 text-lg rounded-md gap-2"
+  >
+    Large
+  </button>
+</div>
+`;
+
+exports[`ButtonComponent snapshots should match snapshot - Loading state 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+    disabled=""
+  >
+    Loading...
+  </button>
+</div>
+`;
+
+exports[`ButtonComponent snapshots should match snapshot - Primary button 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+  >
+    Primary
+  </button>
+</div>
+`;
+
+exports[`ButtonComponent snapshots should match snapshot - Secondary button 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-gray-200 h-10 px-4 text-base rounded-md gap-2"
+  >
+    Secondary
+  </button>
+</div>
+`;
+
+exports[`ButtonComponent snapshots should match snapshot - With start icon 1`] = `
+<div>
+  <button
+    class="
+  inline-flex items-center justify-center
+  font-medium transition
+  focus-visible:outline-none
+  focus-visible:ring-2 focus-visible:ring-primary
+  disabled:pointer-events-none disabled:opacity-50 text-white
+   bg-blue-500 h-10 px-4 text-base rounded-md gap-2"
+  >
+    <span>
+      ICON
+    </span>
+    Icon
+  </button>
+</div>
+`;

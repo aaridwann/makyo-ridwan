@@ -1,16 +1,7 @@
 import { get as getData, set as setData } from 'lodash';
 import React, { useContext, useState } from 'react';
 
-import type { ReactNode } from 'react';
-
-export interface DataContextType {
-  get: <T = unknown>(path: string) => T;
-  set: (path: string, value: unknown) => void;
-}
-
-interface DataProviderProps {
-  children: ReactNode;
-}
+import type { DataContextType, DataProviderProps } from './Data.context.types';
 
 const Ctx = React.createContext<DataContextType | undefined>(undefined);
 

@@ -1,17 +1,19 @@
 import { cva } from 'class-variance-authority';
 
-const stackContainer = cva('flex-1', {
+const stackContainer = cva('flex w-full box-border', {
   variants: {
     direction: {
       row: 'flex-row',
       column: 'flex-col',
     },
+
     align: {
       start: 'items-start',
       center: 'items-center',
       end: 'items-end',
       stretch: 'items-stretch',
     },
+
     justify: {
       start: 'justify-start',
       center: 'justify-center',
@@ -20,10 +22,12 @@ const stackContainer = cva('flex-1', {
       around: 'justify-around',
       evenly: 'justify-evenly',
     },
+
     wrap: {
       true: 'flex-wrap',
       false: 'flex-nowrap',
     },
+
     gap: {
       none: 'gap-0',
       xs: 'gap-1',
@@ -33,6 +37,7 @@ const stackContainer = cva('flex-1', {
       xl: 'gap-8',
     },
   },
+
   defaultVariants: {
     direction: 'column',
     align: 'start',
@@ -42,6 +47,4 @@ const stackContainer = cva('flex-1', {
   },
 });
 
-export default {
-  stackContainer,
-};
+export default { stackContainer };

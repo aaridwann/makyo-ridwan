@@ -4,10 +4,20 @@
             "id": "stack-root",
             "type": "stack",
             "props": {
-                "direction": "row",
+                "direction": "column",
                 "gap": "xl"
             },
             "children": [
+                {
+                    "id": "text-title",
+                    "type": "text",
+                    "props": {
+                        "variant": "heading",
+                        "as": "h3",
+                        "className": "mb-2"
+                    },
+                    "children": "Region"
+                },
                 {
                     "id": "2",
                     "type": "dropdown",
@@ -43,6 +53,14 @@
                         ]
                     },
                     "bind": "country"
+                },
+                {
+                    "id": "3",
+                    "type": "button",
+                    "children": "Submit",
+                    "props": {
+                        "intent": "primary"
+                    }
                 }
             ]
         }

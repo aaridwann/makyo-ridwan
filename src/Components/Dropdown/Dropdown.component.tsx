@@ -4,12 +4,14 @@ import { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { FaChevronDown } from 'react-icons/fa6';
 
-import ButtonComponent from '../Button';
+import ButtonComponent from '../ButtonComponent';
 import InputComponent from '../InputComponent';
+import TextComponent from '../TextComponent';
 
 import Styles from './Dropdown.component.styles';
+import { handleClickOutside, highlightText } from './Dropdown.component.utils';
 
-import type { DropdownProps, OnSelect, UseDropdownReturn } from './Dropdown.component.types';
+import type { DropdownProps, Ref, UseDropdownReturn } from './Dropdown.component.types';
 
 /**
  * Render List options
@@ -17,15 +19,15 @@ import type { DropdownProps, OnSelect, UseDropdownReturn } from './Dropdown.comp
  * @param {OnSelect} onSelect - OnSelect method
  * @returns {React.ReactNode} - Render List options
  */
-const _renderList = (list: DropdownProps['options'], onSelect: OnSelect): React.ReactNode => (
+const _renderList = (hooks: UseDropdownReturn): React.ReactNode => (
   <ul>
-    {list?.map((o, index) => (
+    {hooks.filtered?.map((o, index) => (
       <li
         key={o.value || index}
         className={Styles.listOptionItems()}
-        onClick={() => onSelect(o.value)}
+        onClick={() => hooks.handleSelect(o.value)}
       >
-        {o.label}
+        {highlightText(o.label, hooks.search)}
       </li>
     ))}
   </ul>
@@ -72,13 +74,19 @@ const _renderContentOpen = (hooks: UseDropdownReturn, props: DropdownProps): Rea
         size="full"
       />
     )}
-    {_renderList(hooks.filtered, hooks.handleSelect)}
+    {_renderList(hooks)}
   </div>
 );
 
+/**
+ * render content wrapper
+ * @param {DropdownProps} props  - props
+ * @param {UseDropdownReturn} hooks - Hooks
+ * @returns {React.ReactNode} - render content wrapper
+ */
 const _renderContentOpenWrapper = (
-  hooks: UseDropdownReturn,
   props: DropdownProps,
+  hooks: UseDropdownReturn,
 ): React.ReactNode => {
   if (!hooks.open) {
     return null;
@@ -90,14 +98,54 @@ const _renderContentOpenWrapper = (
 };
 
 /**
+ * Render Icon Chevron
+ * @param {UseDropdownReturn} hooks - Hooks
+ * @returns {React.ReactNode} - Render Icon Chevron
+ */
+const _renderIconChevron = (hooks: UseDropdownReturn): React.ReactNode => (
+  <button onClick={() => hooks.setOpen((v) => !v)} className={Styles.buttonChevronIcon()}>
+    <FaChevronDown className={Styles.chevronIcon()} />
+  </button>
+);
+
+/**
+ * Render place holder
+ * @param {DropdownProps} props - props
+ * @returns {React.ReactNode} - Render place holder
+ */
+const _renderPlaceHolder = (props: DropdownProps): React.ReactNode => (
+  <div className={Styles.wrapperPlaceholder()}>
+    <TextComponent multiline={false} variant="label">
+      {props.placeholder}
+    </TextComponent>
+  </div>
+);
+
+/**
+ * Render Dropdown Content
+ * @param {DropdownProps} props - Props
+ * @param {UseDropdownReturn} hooks - Hooks
+ * @returns {React.ReactNode} - Render Dropdown Content
+ */
+const _renderDropdownContent = (
+  props: DropdownProps,
+  hooks: UseDropdownReturn,
+): React.ReactNode => (
+  <div className={Styles.container(props)}>
+    {hooks.selected.length ? _renderSelectedValue(hooks) : _renderPlaceHolder(props)}
+    <ButtonComponent intent="ghost" size="full" onPress={() => hooks.setOpen((v) => !v)} />
+    {_renderIconChevron(hooks)}
+  </div>
+);
+
+/**
  * useDropdown
  * custom hooks dropdown help to clean and readable
  * @param {DropdownProps} props - Props
  * @returns {UseDropdownReturn} - custom hooks dropdown help to clean and readable
  */
-const useDropdown = (props: DropdownProps): UseDropdownReturn => {
-  const { options, multiple, value, onChange } = props;
-
+const useDropdown = (props: DropdownProps, wrapperRef: Ref): UseDropdownReturn => {
+  const { options, multiple, value, filtering, onChange } = props;
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [internalSelected, setInternalSelected] = useState<string[]>([]);
@@ -126,17 +174,25 @@ const useDropdown = (props: DropdownProps): UseDropdownReturn => {
       return options;
     }
 
-    return options.filter((o) => o.label.toLowerCase().includes(search.toLowerCase()));
-  }, [options, search]);
+    const filterResult = options.filter((o) =>
+      o.label.toLowerCase().includes(search.toLowerCase()),
+    );
+
+    return filtering ? filterResult : options;
+  }, [options, search, filtering]);
+
+  React.useEffect(() => {
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside(wrapperRef, setOpen));
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside(wrapperRef, setOpen));
+    };
+  }, [wrapperRef, open]);
 
   return { open, setSearch, filtered, handleSelect, search, setOpen, selected };
 };
-
-const _renderIconChevron = (hooks: UseDropdownReturn): React.ReactNode => (
-  <button className=" w-10">
-    <FaChevronDown onClick={() => hooks.setOpen((v) => !v)} className={Styles.chevronIcon()} />
-  </button>
-);
 
 /**
  * Dropdown Component Primitive
@@ -144,16 +200,13 @@ const _renderIconChevron = (hooks: UseDropdownReturn): React.ReactNode => (
  * @returns {React.ReactNode} - Dropdown Component Primitive
  */
 const DropdownComponent = (props: DropdownProps): React.ReactNode => {
-  const hooks = useDropdown(props);
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const hooks = useDropdown(props, wrapperRef);
 
   return (
-    <div className="flex flex-col w-full">
-      <div className={Styles.container(props)}>
-        {_renderSelectedValue(hooks)}
-        <ButtonComponent intent="secondary" size="full" onPress={() => hooks.setOpen((v) => !v)} />
-        {_renderIconChevron(hooks)}
-      </div>
-      {_renderContentOpenWrapper(hooks, props)}
+    <div ref={wrapperRef} className={Styles.containerWrapper()}>
+      {_renderDropdownContent(props, hooks)}
+      {_renderContentOpenWrapper(props, hooks)}
     </div>
   );
 };
